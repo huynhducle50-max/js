@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Photo Gallery</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #image {
+            width: 80%;
+            height: 350px;
+            margin: 20px auto;
+            border: 3px solid black;
+            background-color: white;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        figure {
+            width: 180px;
+            margin: 10px;
+        }
+
+        figure img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border: 2px solid #333;
+            border-radius: 8px;
+        }
+
+        figure:focus {
+            outline: 4px solid blue;
+            outline-offset: 4px;
+        }
+    </style>
+</head>
+
+<body onload="addTabindex()">
+
+    <h1>Interactive Photo Gallery</h1>
+
+    <div id="image">
+        Hover over or focus on an image below.
+    </div>
+
+    <div class="gallery">
+
+        <figure onmouseover="upDate(this)"
+                onmouseleave="undo()"
+                onfocus="upDate(this)"
+                onblur="undo()">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400"
+                 alt="Green mountains under a blue sky">
+        </figure>
+
+        <figure onmouseover="upDate(this)"
+                onmouseleave="undo()"
+                onfocus="upDate(this)"
+                onblur="undo()">
+            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400"
+                 alt="Mountain lake reflecting the surrounding peaks">
+        </figure>
+
+        <figure onmouseover="upDate(this)"
+                onmouseleave="undo()"
+                onfocus="upDate(this)"
+                onblur="undo()">
+            <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400"
+                 alt="Small wooden cabin beside a peaceful lake">
+        </figure>
+
+        <figure onmouseover="upDate(this)"
+                onmouseleave="undo()"
+                onfocus="upDate(this)"
+                onblur="undo()">
+            <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400"
+                 alt="Wild deer standing in a green forest">
+        </figure>
+
+        <figure onmouseover="upDate(this)"
+                onmouseleave="undo()"
+                onfocus="upDate(this)"
+                onblur="undo()">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400"
+                 alt="Blue ocean waves reaching a sandy beach">
+        </figure>
+
+        <figure onmouseover="upDate(this)"
+                onmouseleave="undo()"
+                onfocus="upDate(this)"
+                onblur="undo()">
+            <img src="https://images.unsplash.com/photo-1511497584788-876760111969?w=400"
+                 alt="Sunlight shining through tall forest trees">
+        </figure>
+
+    </div>
+
+    <script>
+        function upDate(previewPic) {
+            console.log("Mouse over or focus event triggered");
+
+            var image = document.getElementById("image");
+
+            image.innerHTML = previewPic.querySelector("img").alt;
+            image.style.backgroundImage =
+                "url('" + previewPic.querySelector("img").src + "')";
+        }
+
+        function undo() {
+            console.log("Mouse leave or blur event triggered");
+
+            var image = document.getElementById("image");
+
+            image.innerHTML = "Hover over or focus on an image below.";
+            image.style.backgroundImage = "url('')";
+        }
+
+        function addTabindex() {
+            console.log("Page loaded - adding tabindex");
+
+            var figures = document.querySelectorAll("figure");
+
+            for (var i = 0; i < figures.length; i++) {
+                figures[i].setAttribute("tabindex", "0");
+            }
+        }
+    </script>
+
+</body>
+</html>
